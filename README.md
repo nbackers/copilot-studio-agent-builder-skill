@@ -38,6 +38,25 @@ Each of these costs hours, and none of them are visible in the product.
 
 ---
 
+## What's in this repo
+
+**This is a skill set and a pattern reference, not a deployable solution.**
+
+| Included | Not included |
+|---|---|
+| Three `SKILL.md` files, ready to upload | A packaged solution |
+| Packaging validator (tested against malformed input) | A deployed agent |
+| Pattern and format documentation | Automated agent provisioning |
+
+The skills are prose instructions — that is what a Copilot Studio skill is. They are complete and
+uploadable, and equally usable as prompts in any harness that reads markdown skills.
+
+**Verification status:** the validator is tested. The three skills have **not** been uploaded to
+Copilot Studio and activated as part of this repo, so their activation phrasing is untested. The
+patterns they encode come from several real agent builds.
+
+---
+
 ## The three skills
 
 | Skill | Use when |
