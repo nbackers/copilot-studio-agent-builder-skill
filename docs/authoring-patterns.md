@@ -1,7 +1,7 @@
 # Authoring patterns
 
-Patterns for building agents in the new Copilot Studio experience, accumulated across several
-builds. Ordered by how much time they save.
+Patterns for building agents in the new Copilot Studio experience. Ordered by how much time they
+save.
 
 ---
 

@@ -7,6 +7,7 @@
 [![Skills](https://img.shields.io/badge/3_skills-0F6CBD?style=flat-square)](skills/)
 [![Validator](https://img.shields.io/badge/validator-tested-success?style=flat-square)](scripts/)
 [![Copilot Studio](https://img.shields.io/badge/Copilot_Studio-0F6CBD?style=flat-square&logo=microsoft&logoColor=white)](#)
+[![Sample code](https://img.shields.io/badge/sample_code-not_production_ready-orange?style=flat-square)](#disclaimer)
 [![Licence](https://img.shields.io/badge/licence-MIT-blue?style=flat-square)](LICENSE)
 
 </div>
@@ -61,8 +62,7 @@ The skills are prose instructions - that is what a Copilot Studio skill is. They
 uploadable, and equally usable as prompts in any harness that reads markdown skills.
 
 **Verification status:** the validator is tested. The three skills have **not** been uploaded to
-Copilot Studio and activated as part of this repo, so their activation phrasing is untested. The
-patterns they encode come from several real agent builds.
+Copilot Studio and activated as part of this repo, so their activation phrasing is untested.
 
 ---
 
@@ -143,8 +143,7 @@ deliberately malformed input:
 - UTF-8 **without** BOM; a BOM breaks front matter parsing
 - Skills upload one zip at a time through the portal
 
-**Drawn from repeated practice** across several agent builds - consistent, but behavioural rather
-than mechanically testable:
+**Observed behaviour** - consistent in testing, but behavioural rather than mechanically testable:
 - Routing follows `description` over name and instructions
 - Overlapping descriptions produce arbitrary routing
 - Negative scope materially improves accuracy
@@ -155,6 +154,23 @@ than mechanically testable:
 
 If your experience differs, please open an issue - the routing patterns are the part most worth
 correcting.
+
+---
+
+## Disclaimer
+
+This is **sample code**, published as a reusable reference pattern.
+
+- Provided **as is**, without warranty of any kind, express or implied. See [LICENSE](LICENSE).
+- **Not production ready.** Treat it as a starting point, not a finished solution. Review, test and
+  harden it against your own requirements before any real use.
+- **Not an official Microsoft product** and not affiliated with, endorsed by, or supported by
+  Microsoft. Product names are trademarks of their respective owners.
+- **No support commitment.** Issues and pull requests are welcome, but nothing here carries an SLA.
+- Some behaviours documented here rely on **undocumented or preview platform features** that can
+  change without notice. Verify against current documentation before depending on them.
+- You are responsible for security, privacy, licensing and regulatory compliance in your own
+  environment.
 
 ---
 

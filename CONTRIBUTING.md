@@ -1,6 +1,6 @@
 # Contributing
 
-The routing patterns here are drawn from repeated practice rather than published documentation. If
+The patterns here are based on observed behaviour rather than published documentation. If
 your experience contradicts them, that is the most valuable thing you can contribute.
 
 ## Especially useful
