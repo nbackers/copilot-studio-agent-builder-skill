@@ -8,20 +8,19 @@ builds. Ordered by how much time they save.
 ## 1. Routing is driven by `description`
 
 The orchestrator reads each child agent's **`description`** to route. Not the name. Not the child's
-instructions. The same is true of skills — front matter `description` is what the router matches.
+instructions. The same is true of skills - front matter `description` is what the router matches.
 
 Consequences:
-
 - **Tune descriptions first.** A misrouted question is a description problem.
 - **Never fix routing in instructions.** The router does not read them.
 - **Renaming an agent does nothing** for routing.
 
 A description needs four things:
 
-1. **Concrete trigger phrases** — the words users type, not an abstract summary. "Handles inventory
+1. **Concrete trigger phrases** - the words users type, not an abstract summary. "Handles inventory
    matters" gives the router nothing.
-2. **Explicit negative scope** — "Do not use for…", naming the sibling that owns it.
-3. **Ambiguous cases resolved** — the ones that read like another domain.
+2. **Explicit negative scope** - "Do not use for…", naming the sibling that owns it.
+3. **Ambiguous cases resolved** - the ones that read like another domain.
 4. **No overlap on the same noun** with any sibling.
 
 ### Ambiguity worth encoding
@@ -30,13 +29,13 @@ Cases that consistently route wrong unless named:
 
 | Question | Reads like | Actually belongs to |
 |---|---|---|
-| "Damaged on arrival" | Warranty | Delivery — broke in transit ≠ failed in service |
+| "Damaged on arrival" | Warranty | Delivery - broke in transit ≠ failed in service |
 | "Is it in stock" when they already own one | Warranty or orders | Availability |
 | "New starter needs a laptop" | IT | A cross-domain skill |
 
 ## 2. When to orchestrate
 
-Multi-agent is not the default. It costs routing accuracy — every additional child is another
+Multi-agent is not the default. It costs routing accuracy - every additional child is another
 description competing for the same question.
 
 **One agent** when a single instruction set stays coherent, questions are of one kind, and no
@@ -51,7 +50,7 @@ Domain diversity is the trigger.
 
 ### The corollary most builds miss
 
-Once split, **no child agent can answer a cross-domain question** — by construction. The joins have
+Once split, **no child agent can answer a cross-domain question** - by construction. The joins have
 to live in skills. Four agents with no cross-cutting skills has the cost of orchestration and none
 of the benefit.
 
@@ -90,7 +89,7 @@ and makes the domain boundary real rather than advisory.
 
 ### Alternate keys
 
-Where records are looked up by a natural identifier — email, ticket number, order number — add an
+Where records are looked up by a natural identifier - email, ticket number, order number - add an
 **alternate key** on that column. Keeps queries delegable at scale and avoids GUIDs appearing in
 conversation.
 
@@ -127,30 +126,28 @@ Build a table of representative questions and their expected destination. Confir
 or skill handled each **before** judging the response.
 
 Changing one description moves its boundary with siblings, so a fix for one question routinely
-breaks another. Re-run the whole table after every description change — it is the only way to see
+breaks another. Re-run the whole table after every description change - it is the only way to see
 regressions.
 
 ## 7. What cannot be automated
 
 Plan around these:
-
-- **Connection binding** — OAuth consent, once per environment, portal only
-- **Skill upload** — portal only, one zip at a time
-- **Flow creation** — no `pac flow create`
+- **Connection binding** - OAuth consent, once per environment, portal only
+- **Skill upload** - portal only, one zip at a time
+- **Flow creation** - no `pac flow create`
 
 `pac copilot create / clone / push / publish` provisions agents from source but cannot bind
 connections.
 
 ## 8. Adaptive cards
 
-Applies to card-capable topics, not to generative child agents — which cannot contain actions and
+Applies to card-capable topics, not to generative child agents - which cannot contain actions and
 therefore cannot send cards at all. Plan for that before designing guided journeys.
 
 Where cards are supported, `cardContent` takes a **Power Fx object literal, not JSON**:
-
-- Omit `$schema` — it breaks Power Fx parsing
+- Omit `$schema` - it breaks Power Fx parsing
 - Interpolate with `$"text {Global.Var}"`
-- Avoid emoji — encoding risk through JSON
+- Avoid emoji - encoding risk through JSON
 - Use `ColumnSet` for layout; three stacked containers read as a list, three columns read as
   designed
 
@@ -166,7 +163,7 @@ otherwise                        -> postBack (activity has a value but NO text)
 ```
 
 The Teams `{ msteams: { type: "messageBack" } }` convention is a **Teams-client** thing. WebChat
-does not read it, so those buttons fall into `postBack` and produce a textless activity — nothing
+does not read it, so those buttons fall into `postBack` and produce a textless activity - nothing
 for a trigger phrase to match, and no visible user message.
 
 Shape that works on both channels:
@@ -183,7 +180,7 @@ data: {
 
 ### Suppressing the duplicate generated reply
 
-Under generative orchestration, a topic that ends by sending a card does not end the turn — the
+Under generative orchestration, a topic that ends by sending a card does not end the turn - the
 orchestrator then answers the same message itself, so the user sees a card and an equivalent text
 reply below it.
 
@@ -200,18 +197,18 @@ beginDialog:
   id: main
   condition: =Global.SuppressResponse
   actions:
-    - kind: SetVariable
+- kind: SetVariable
       variable: System.ContinueResponse
       value: =false
-    - kind: SetVariable
+- kind: SetVariable
       variable: Global.SuppressResponse
       value: =false
 ```
 
 Each card-only topic sets `Global.SuppressResponse = true` as its final action. The trigger is
-global, so the flag is what makes it selective — free-text questions still get a generated answer.
+global, so the flag is what makes it selective - free-text questions still get a generated answer.
 **Clearing the flag inside the trigger is essential**; without the reset it silences the agent for
 the rest of the conversation.
 
-Note the UI label and YAML `kind` differ, and the `kind` is not in the documentation — it is
+Note the UI label and YAML `kind` differ, and the `kind` is not in the documentation - it is
 `OnGeneratedResponse`. The variables take a `System.` prefix the docs omit.

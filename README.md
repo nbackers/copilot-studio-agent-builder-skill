@@ -1,7 +1,6 @@
 # Copilot Studio Agent Builder Skill
 
-Skills that build, review and package agents for the **new** Copilot Studio experience —
-codifying the patterns that decide whether an agent routes correctly, plus a validator that
+Skills that build, review and package agents for the **new** Copilot Studio experience - codifying the patterns that decide whether an agent routes correctly, plus a validator that
 catches the things which silently break a skill upload.
 
 ---
@@ -13,8 +12,7 @@ extension does not cover it. So agents get built by hand, in the portal, from me
 
 The consequence is not that building is slow. It is that **the patterns which decide whether an
 agent works are not written down anywhere**, so every team rediscovers them the same way:
-
-- They split into four child agents because it looks more mature, and routing degrades — because
+- They split into four child agents because it looks more mature, and routing degrades - because
   every extra child is another description competing for the same question.
 - They fix a routing problem by editing the agent's instructions, which the router never reads.
 - They assume the Dataverse MCP tool is read-only because the agent was told to be. It isn't.
@@ -48,7 +46,7 @@ Each of these costs hours, and none of them are visible in the product.
 | Packaging validator (tested against malformed input) | A deployed agent |
 | Pattern and format documentation | Automated agent provisioning |
 
-The skills are prose instructions — that is what a Copilot Studio skill is. They are complete and
+The skills are prose instructions - that is what a Copilot Studio skill is. They are complete and
 uploadable, and equally usable as prompts in any harness that reads markdown skills.
 
 **Verification status:** the validator is tested. The three skills have **not** been uploaded to
@@ -92,7 +90,7 @@ entirely. If routing misfires, that is the only thing worth changing.
 
 **Descriptions need negative scope.** A description that only says what it covers will attract
 adjacent questions. Each needs "Do not use for…", naming the sibling that owns it. Two descriptions
-that both plausibly cover the same noun will route arbitrarily — and it looks like a model quality
+that both plausibly cover the same noun will route arbitrarily - and it looks like a model quality
 problem when it is a specification problem.
 
 **The Dataverse MCP tool is not read-only.** It will create, update and delete if asked. Read-only
@@ -127,31 +125,28 @@ orchestration without the benefit.
 
 ## What is and isn't verified
 
-**Verified** — the packaging rules are enforced by `Build-SkillPackage.ps1` and tested against
+**Verified** - the packaging rules are enforced by `Build-SkillPackage.ps1` and tested against
 deliberately malformed input:
-
 - `SKILL.md` must be at the archive root, not inside a folder
 - `name` must be lowercase kebab case and match the folder name
 - UTF-8 **without** BOM; a BOM breaks front matter parsing
 - Skills upload one zip at a time through the portal
 
-**Drawn from repeated practice** across several agent builds — consistent, but behavioural rather
+**Drawn from repeated practice** across several agent builds - consistent, but behavioural rather
 than mechanically testable:
-
 - Routing follows `description` over name and instructions
 - Overlapping descriptions produce arbitrary routing
 - Negative scope materially improves accuracy
 
 **Not verified:**
-
 - Whether routing behaviour is identical across all Copilot Studio regions and releases
 - Exact model behaviour when three or more descriptions overlap
 
-If your experience differs, please open an issue — the routing patterns are the part most worth
+If your experience differs, please open an issue - the routing patterns are the part most worth
 correcting.
 
 ---
 
 ## Licence
 
-MIT — see [LICENSE](LICENSE).
+MIT - see [LICENSE](LICENSE).

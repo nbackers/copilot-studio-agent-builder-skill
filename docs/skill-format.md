@@ -21,11 +21,11 @@ description: What it produces, the phrases that activate it, what it is not for,
 
 <The narrower case that should NOT trigger it.>
 
-## Step 1 — <Establish inputs>
+## Step 1 - <Establish inputs>
 
-## Step 2 — Gather
+## Step 2 - Gather
 
-## Step 3 — Write the output
+## Step 3 - Write the output
 
 ## Rules
 
@@ -51,7 +51,7 @@ These cause failures, and the errors rarely name the real cause.
 
 `Set-Content -Encoding UTF8` in Windows PowerShell writes a UTF-8 **BOM**. The BOM sits before the
 opening `---`, so the front matter parser doesn't see a delimiter on line 1 and the whole block is
-read as body — meaning the skill has no `name` and no `description`, and won't route.
+read as body - meaning the skill has no `name` and no `description`, and won't route.
 
 Write without a BOM:
 
@@ -114,7 +114,7 @@ Add negative scope where a sibling could compete:
 **Give the output structure explicitly.** A fenced block showing the exact shape, with a length
 limit. Unbounded output gets ignored.
 
-**State the order of operations.** If all lookups should happen before any writing, say so — the
+**State the order of operations.** If all lookups should happen before any writing, say so - the
 value of a cross-domain skill is the joined picture, not the individual facts.
 
 **Put the reason next to the rule.** A rule with a reason survives editing; a bare instruction gets
