@@ -1,7 +1,18 @@
+<div align="center">
+
 # Copilot Studio Agent Builder Skill
 
-Skills that build, review and package agents for the **new** Copilot Studio experience - codifying the patterns that decide whether an agent routes correctly, plus a validator that
-catches the things which silently break a skill upload.
+**Skills that build, review and package agents for the new Copilot Studio experience**
+
+[![Skills](https://img.shields.io/badge/3_skills-0F6CBD?style=flat-square)](skills/)
+[![Validator](https://img.shields.io/badge/validator-tested-success?style=flat-square)](scripts/)
+[![Copilot Studio](https://img.shields.io/badge/Copilot_Studio-0F6CBD?style=flat-square&logo=microsoft&logoColor=white)](#)
+[![Licence](https://img.shields.io/badge/licence-MIT-blue?style=flat-square)](LICENSE)
+
+</div>
+
+Codifies the patterns that decide whether an agent routes correctly, plus a validator that catches
+the things which silently break a skill upload.
 
 ---
 
